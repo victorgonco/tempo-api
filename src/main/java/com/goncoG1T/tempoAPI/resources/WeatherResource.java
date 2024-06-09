@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/findWeather")
 @Controller
 @ResponseBody //Annotation added only for test purposes, this will be a web app.
-public class GeneralResource {
+public class WeatherResource {
 
     private final WeatherApiConsumer weatherApiConsumer;
 
-    public GeneralResource(WeatherApiConsumer weatherApiConsumer) {
+    public WeatherResource(WeatherApiConsumer weatherApiConsumer) {
         this.weatherApiConsumer = weatherApiConsumer;
     }
 
