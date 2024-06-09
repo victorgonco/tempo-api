@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @RequestMapping("/findWeather")
 @Controller
-@ResponseBody //Added only for test purposes, this will be a web app.
+@ResponseBody //Annotation added only for test purposes, this will be a web app.
 public class GeneralResource {
 
     private final WeatherApiConsumer weatherApiConsumer;
@@ -20,7 +20,7 @@ public class GeneralResource {
     }
 
     @GetMapping("byCity")
-    public String home(@RequestParam String city) {
+    public String byCity(@RequestParam String city) {
         return weatherApiConsumer.getTempo(city);
     }
 
