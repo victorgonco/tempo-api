@@ -1,0 +1,27 @@
+package com.goncoG1T.tempoAPI.resources;
+
+import com.goncoG1T.tempoAPI.services.integration.WeatherApiConsumer;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+
+@RequestMapping("/findWeather")
+@Controller
+@ResponseBody //Added only for test purposes, this will be a web app.
+public class GeneralResource {
+
+    private final WeatherApiConsumer weatherApiConsumer;
+
+    public GeneralResource(WeatherApiConsumer weatherApiConsumer) {
+        this.weatherApiConsumer = weatherApiConsumer;
+    }
+
+    @GetMapping("byCity")
+    public String home(@RequestParam String city) {
+        return weatherApiConsumer.getTempo(city);
+    }
+
+}
