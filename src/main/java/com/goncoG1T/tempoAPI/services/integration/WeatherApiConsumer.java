@@ -18,18 +18,30 @@ import static com.goncoG1T.tempoAPI.constants.WeatherAPIParameterConstants.URI_R
 import static com.goncoG1T.tempoAPI.constants.WeatherAPIParameterConstants.URI_REQUEST_PARAMS_TIME_FIELDS;
 import static com.goncoG1T.tempoAPI.constants.WeatherAPIParameterConstants.URI_REQUEST_PARAMS_UNIT;
 import static com.goncoG1T.tempoAPI.constants.WeatherAPIParameterConstants.URI_STRUCTURE_CONNECTOR;
+import static com.goncoG1T.tempoAPI.constants.WeatherAPIParameterConstants.URI_STRUCTURE_QUERY_STRING;
 
 @Service
 public class WeatherApiConsumer {
 
-    @Value("${weather.api.scheme}")
-    private static String SCHEME;
-    @Value("${weather.api.domain}")
-    private static String DOMAIN;
-    @Value("${weather.api.path}")
-    private static String PATH;
-    @Value("${weather.api.key}")
-    private static String KEY;
+    private final String SCHEME;
+    private final String DOMAIN;
+    private final String PATH;
+    private final String KEY;
+
+    public WeatherApiConsumer(@Value("${weather.api.scheme}")
+                              String SCHEME,
+                              @Value("${weather.api.domain}")
+                              String DOMAIN,
+                              @Value("${weather.api.path}")
+                              String PATH,
+                              @Value("${weather.api.key}")
+                              String KEY) {
+
+        this.SCHEME = SCHEME;
+        this.DOMAIN = DOMAIN;
+        this.PATH = PATH;
+        this.KEY = KEY;
+    }
 
     public String getTempo(String city) {
 
@@ -61,16 +73,16 @@ public class WeatherApiConsumer {
         sb.append(SCHEME).append(DOMAIN).append(PATH);
 
         //Pointing city, fixed to São Paulo.
-        sb.append(URLEncoder.encode(city, StandardCharsets.UTF_8));
+        sb.append(URLEncoder.encode(city, StandardCharsets.UTF_8)).append(URI_STRUCTURE_QUERY_STRING);
 
         //Preparing token
-        var preparingToken = String.format(KEY, URI_REQUEST_PARAMS_KEY);
-        appendParameter(sb, preparingToken);
+        var concatenatedKey = String.format(URI_REQUEST_PARAMS_KEY, KEY);
+        appendParameter(sb, concatenatedKey);
 
         //Parameterizing content
         appendParameter(sb, URI_REQUEST_PARAMS_UNIT);
-        appendParameter(sb, URI_REQUEST_PARAMS_CONTENT_TYPE);
         appendParameter(sb, URI_REQUEST_PARAMS_ELEMENTS);
+        appendParameter(sb, URI_REQUEST_PARAMS_CONTENT_TYPE);
         sb.append(URI_REQUEST_PARAMS_TIME_FIELDS);
 
         return URI.create(sb.toString());
