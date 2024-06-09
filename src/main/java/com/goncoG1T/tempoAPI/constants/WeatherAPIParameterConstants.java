@@ -13,5 +13,6 @@ public final class WeatherAPIParameterConstants {
     public static final String URI_REQUEST_PARAMS_UNIT = "unitGroup=metric";
 
     public static final String URI_STRUCTURE_CONNECTOR = "&";
+    public static final String URI_STRUCTURE_QUERY_STRING = "?";
 
 }
