@@ -9,7 +9,6 @@ import java.util.List;
 public record WeatherResponse(
         @JsonProperty("resolvedAddress")
         String address,
-        @JsonProperty("description")
-        String overallDesc,
+        String description,
         List<WeatherResponseDay> days) {
 }
