@@ -1,5 +1,6 @@
 package com.goncoG1T.tempoAPI.resources;
 
+import com.goncoG1T.tempoAPI.dtos.responses.WeatherResponse;
 import com.goncoG1T.tempoAPI.services.integration.WeatherApiConsumer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +21,8 @@ public class WeatherResource {
     }
 
     @GetMapping("byCity")
-    public String byCity(@RequestParam String city) {
-        return weatherApiConsumer.getTempo(city);
+    public WeatherResponse byCity(@RequestParam String city) {
+        return weatherApiConsumer.getTempoToDto(city);
     }
 
 }
