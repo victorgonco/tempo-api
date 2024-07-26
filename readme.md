@@ -1,8 +1,8 @@
 ### Description
 
-This is a study project to practice web application development,
+This is a study project to consume an API,
 using weather conditions as the main theme.
 
 API consumed: https://www.visualcrossing.com/weather-api  
-This API as usual, needs a token to run.  
-If you have one, just initialize the program filling an env variable under the name 'WEATHER_API_TOKEN' with it. 
+You'll need to create a token and parameterize it to run this project, go to the link above.
+If you have one, just initialize the program filling an env variable with the name 'WEATHER_API_TOKEN'. 
